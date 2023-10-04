@@ -4,7 +4,7 @@
     <div class="bg-dark"></div>
 
     <div class="indecision-container">
-      <input v-model="question" type="text" placeholder="hazme una pregunta" />
+      <input v-model="question" type="text" placeholder="ask me something" />
       <p>Remember to finish with an interrogation mark (?)</p>
       <div v-if="isValidQuestion">
         <h2>{{ question }}</h2>

@@ -3,14 +3,14 @@
     <img :src="img" alt="bg" />
     <div class="bg-dark"></div>
 
-    <di class="indecision-container">
+    <div class="indecision-container">
       <input v-model="question" type="text" placeholder="hazme una pregunta" />
-      <p>Recuerda terminar con un signo de interrogación (?)</p>
-      <div>
+      <p>Remember to finish with an interrogation mark (?)</p>
+      <div v-if="isValidQuestion">
         <h2>{{ question }}</h2>
         <h1>{{ answer }}</h1>
       </div>
-    </di>
+    </div>
   </div>
 </template>
 
@@ -20,6 +20,8 @@ export default {
     return {
       question: null,
       answer: null,
+      image: null,
+      isValidQuestion: false,
     };
   },
   methods: {
@@ -31,11 +33,16 @@ export default {
       );
 
       this.answer = answer;
+      this.img = image;
     },
   },
   watch: {
     question(value, oldValue) {
+      this.isValidQuestion = false;
+
       if (!value.includes('?')) return;
+
+      this.isValidQuestion = true;
 
       this.getAnswer();
     },
